@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 console.log("@@@@@@@@@ USING DEVELOPMENT @@@@@@@@@@@@@@@");
 module.exports = {
@@ -38,22 +39,38 @@ module.exports = {
                 loader: "awesome-typescript-loader"
             },
             {
-                test: /\.(png|jpg|gif|woff|woff2|ttf|svg|eot)$/,
-                loader: "file-loader?name=assets/fonts/[name]-[hash:6].[ext]"
+                test: /\.(jpe?g|png|gif)$/i, //to support eg. background-image property 
+                loader: "file-loader",
+                query: {
+                    name: '[name].[ext]',
+                    outputPath: 'assets/images/'
+                }
+            },
+            {
+                test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: "url-loader",
+                query: {
+                    limit: '10000',
+                    name: '[name].[ext]',
+                    outputPath: 'assets/fonts/'
+                }
+            },
+            {
+                test: /\.css$/,
+                /*  loader: "style-loader!css-loader" */
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            },
+            {
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                /* loaders: ["style-loader", "css-loader", "sass-loader"] */
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader", "sass-loader")
             },
             {
                 test: /favicon.ico$/,
                 loader: "file-loader?name=/[name].[ext]"
             },
-            {
-                test: /\.css$/,
-                loader: "style-loader!css-loader"
-            },
-            {
-                test: /\.scss$/,
-                exclude: /node_modules/,
-                loaders: ["style-loader", "css-loader", "sass-loader"]
-            },
+
             {
                 test: /\.html$/,
                 loader: "raw-loader"
@@ -62,6 +79,7 @@ module.exports = {
         exprContextCritical: false
     },
     plugins: [
+        new ExtractTextPlugin("[name].css"),
         new webpack.ProvidePlugin({
             jQuery: 'jquery',
             $: 'jquery',
