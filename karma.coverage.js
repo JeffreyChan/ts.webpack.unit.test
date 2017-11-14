@@ -28,12 +28,15 @@ module.exports = function(config) {
         files: ["test/**/*.ts"],
         exclude: [],
         preprocessors: {
-            "test/**/*.ts": ['webpack', 'sourcemap']
+            "test/**/*.ts": ["webpack", "sourcemap"]
         },
         webpack: {
             devtool: "inline-source-map",
             module: webpackConfig.module,
             resolve: webpackConfig.resolve
+        },
+        webpackMiddleware: {
+            noInfo: true
         },
         webpackServer: {
             noInfo: true

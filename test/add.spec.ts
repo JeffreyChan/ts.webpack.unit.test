@@ -1,14 +1,14 @@
-import { add } from '../src/add';
-import * as chai from 'chai';
+import { add } from "../src/add";
+import * as chai from "chai";
 
-describe('test: add', () => {
+describe("test: add", () => {
   const expect = chai.expect;
 
-  it('add two to one', () => {
+  it("add two to one", () => {
     expect(add(1, 2)).equal(3);
   });
 
-  it("add three to one, fixed" ,()=> {
+  it("add three to one, fixed", () => {
     expect(add(1, 3)).equal(4);
   });
 });

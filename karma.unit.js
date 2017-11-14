@@ -7,11 +7,14 @@ module.exports = function(config) {
         files: ["test/**/*.ts"],
         exclude: [],
         preprocessors: {
-            "test/**/*.ts": ['webpack', 'sourcemap']
+            "test/**/*.ts": ["webpack", "sourcemap"]
         },
         webpack: {
             module: webpackConfig.module,
             resolve: webpackConfig.resolve
+        },
+        webpackMiddleware: {
+            noInfo: true
         },
         reporters: ["mocha"],
         port: 9876,
