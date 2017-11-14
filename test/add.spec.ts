@@ -8,7 +8,7 @@ describe('test: add', () => {
     expect(add(1, 2)).equal(3);
   });
 
-  it("add three to one, failed" ,()=> {
+  it("add three to one, fixed" ,()=> {
     expect(add(1, 3)).equal(4);
   });
 });
