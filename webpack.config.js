@@ -57,14 +57,14 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                 loader: "style-loader!css-loader"
-                /*loader: ExtractTextPlugin.extract("style-loader", "css-loader") */
+                loader: "style-loader!css-loader"
+                    /*loader: ExtractTextPlugin.extract("style-loader", "css-loader") */
             },
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 loaders: ["style-loader", "css-loader", "sass-loader"]
-                /* loader: ExtractTextPlugin.extract("style-loader", "css-loader", "sass-loader") */
+                    /* loader: ExtractTextPlugin.extract("style-loader", "css-loader", "sass-loader") */
             },
             {
                 test: /favicon.ico$/,
@@ -79,7 +79,6 @@ module.exports = {
         exprContextCritical: false
     },
     plugins: [
-        new ExtractTextPlugin("[name].css"),
         new webpack.ProvidePlugin({
             jQuery: 'jquery',
             $: 'jquery',
@@ -91,12 +90,12 @@ module.exports = {
 
         new HtmlWebpackPlugin({
             filename: "index.html",
-            inject: 'body',
+            inject: false,
             template: "./index.html"
         }),
 
         new CopyWebpackPlugin([
-            { from: "./style/images/*.*", to: "assets/", flatten: true }
+            { from: "./assets/", to: "assets/" }
         ])
     ]
 };

@@ -11,6 +11,10 @@ export interface IMathWidget {
 export class MathWidget implements IMathWidget {
   public PI: number;
 
+  constructor() {
+    this.PI = 3.14159265359;
+  }
+  
   private static Delay(ms: number) {
     return new Promise<void>(resolve => {
       setTimeout(resolve, ms);
