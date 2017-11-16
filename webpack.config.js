@@ -13,7 +13,7 @@ module.exports = {
         hints: false
     },
     entry: {
-        app: "./src/bootstrap.ts" // JiT compilation
+        app: "./src/app.ts" // JiT compilation
     },
     output: {
         path: path.resolve(__dirname, "wwwroot"),

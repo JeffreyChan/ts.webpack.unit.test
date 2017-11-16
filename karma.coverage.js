@@ -25,7 +25,10 @@ module.exports = function(config) {
     config.set({
         basePath: "",
         frameworks: ["mocha", "chai", "sinon"],
-        files: ["test/**/*.ts"],
+        files: [
+            "./assets/js/jquery.min.js",
+            "test/**/*.ts"
+        ],
         exclude: [],
         preprocessors: {
             "test/**/*.ts": ["webpack", "sourcemap"]
